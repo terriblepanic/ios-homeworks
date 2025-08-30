@@ -40,6 +40,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             UINavigationController(rootViewController: $0)
         }
         tabBarController.selectedIndex = 0
+        tabBarController.tabBar.backgroundColor = .white
         
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
