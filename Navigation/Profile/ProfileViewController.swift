@@ -24,7 +24,7 @@ final class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .systemBackground
         
         view.addSubview(Self.postTableView)
@@ -33,6 +33,11 @@ final class ProfileViewController: UIViewController {
         Self.postTableView.delegate = self
         Self.postTableView.refreshControl = UIRefreshControl()
         Self.postTableView.refreshControl?.addTarget(self, action: #selector(reloadTableView), for: .valueChanged)
+        
+        #if DEBUG
+        Self.postTableView.backgroundColor = .systemGray2
+        #endif
+
     }
     
     private func setupConstraints() {
