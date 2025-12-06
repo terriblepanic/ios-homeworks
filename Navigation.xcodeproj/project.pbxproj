@@ -88,6 +88,8 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		B52769802EE45C1F00118872 /* StorageService */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = StorageService; sourceTree = "<group>"; };
+		B5C8352F2EE4BB8A00ECAF30 /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
+		B5C835302EE4BB9100ECAF30 /* Services */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Services; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,8 @@
 		3601A2A628490DDF000D261A /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				B5C835302EE4BB9100ECAF30 /* Services */,
+				B5C8352F2EE4BB8A00ECAF30 /* Models */,
 				3601A2A728490DDF000D261A /* AppDelegate.swift */,
 				36528E3A284F703400965BA4 /* Library */,
 				3601A2C5284A771D000D261A /* Profile */,
@@ -222,6 +226,10 @@
 			);
 			dependencies = (
 				B52769862EE45C1F00118872 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				B5C8352F2EE4BB8A00ECAF30 /* Models */,
+				B5C835302EE4BB9100ECAF30 /* Services */,
 			);
 			name = Navigation;
 			productName = Navigation;
@@ -565,6 +573,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = only.one.Navigation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -595,6 +604,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = only.one.Navigation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -21,6 +21,21 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
     private var statusText = "Ready to help"
     private var avatarOriginPoint = CGPoint()
     
+    // Constraints для анимации аватарки
+    private var avatarTopConstraint: Constraint?
+    private var avatarLeadingConstraint: Constraint?
+    private var avatarWidthConstraint: Constraint?
+    private var avatarHeightConstraint: Constraint?
+    
+    // MARK: - Configuration
+    
+    func configure(with user: User) {
+        fullNameLabel.text = user.fullName
+        avatarImageView.image = user.avatar
+        statusLabel.text = user.status
+        statusText = user.status
+    }
+    
     // MARK: - Setup section
     
     override init(reuseIdentifier: String?) {
@@ -40,7 +55,6 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
     }
     
     private func setupNameLabel() {
-        fullNameLabel.text = "Teo West"
         fullNameLabel.font = .boldSystemFont(ofSize: 18)
         fullNameLabel.textColor = .black
         addSubview(fullNameLabel)
@@ -54,7 +68,6 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
     }
     
     private func setupStatusLabel() {
-        statusLabel.text = statusText
         statusLabel.font = .systemFont(ofSize: 17)
         statusLabel.textColor = .black
         addSubview(statusLabel)
@@ -111,7 +124,6 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
     }
     
     private func setupAvatarImage() {
-        avatarImageView.image = UIImage(named: "teo")
         avatarImageView.layer.cornerRadius = 64
         avatarImageView.layer.borderWidth = 3
         avatarImageView.layer.borderColor = UIColor.white.cgColor
@@ -141,9 +153,10 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         addSubviews(avatarBackground, avatarImageView, returnAvatarButton)
         
         avatarImageView.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide).offset(16)
-            make.leading.equalTo(safeAreaLayoutGuide).offset(16)
-            make.width.height.equalTo(128)
+            avatarTopConstraint = make.top.equalTo(safeAreaLayoutGuide).offset(16).constraint
+            avatarLeadingConstraint = make.leading.equalTo(safeAreaLayoutGuide).offset(16).constraint
+            avatarWidthConstraint = make.width.height.equalTo(128).constraint
+            avatarHeightConstraint = make.height.equalTo(128).constraint
         }
         
         returnAvatarButton.snp.makeConstraints { make in
@@ -169,16 +182,19 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         ProfileViewController.postTableView.isScrollEnabled = false
         ProfileViewController.postTableView.cellForRow(at: IndexPath(row: 0, section: 0))?.isUserInteractionEnabled = false
         
-        avatarOriginPoint = avatarImageView.center
-        let scale = UIScreen.main.bounds.width / avatarImageView.bounds.width
+        let screenWidth = UIScreen.main.bounds.width
+        let screenHeight = UIScreen.main.bounds.height
         
-        UIView.animate(withDuration: 0.5) {
-            self.avatarImageView.center = CGPoint(x: UIScreen.main.bounds.midX,
-                                                  y: UIScreen.main.bounds.midY - self.avatarOriginPoint.y)
-            self.avatarImageView.transform = CGAffineTransform(scaleX: scale, y: scale)
+        avatarTopConstraint?.update(offset: 0)
+        avatarLeadingConstraint?.update(offset: 0)
+        avatarWidthConstraint?.update(offset: screenWidth)
+        avatarHeightConstraint?.update(offset: screenWidth)
+        
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut) {
             self.avatarImageView.layer.cornerRadius = 0
             self.avatarBackground.isHidden = false
             self.avatarBackground.alpha = 0.7
+            self.layoutIfNeeded()
         } completion: { _ in
             UIView.animate(withDuration: 0.3) {
                 self.returnAvatarButton.alpha = 1
@@ -187,15 +203,18 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
     }
     
     @objc private func returnAvatarToOrigin() {
-        UIImageView.animate(withDuration: 0.5) {
-            UIImageView.animate(withDuration: 0.5) {
-                self.returnAvatarButton.alpha = 0
-                self.avatarImageView.center = self.avatarOriginPoint
-                self.avatarImageView.transform = CGAffineTransform(scaleX: 1, y: 1)
-                self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.width / 2
-                self.avatarBackground.alpha = 0
-            }
+        avatarTopConstraint?.update(offset: 16)
+        avatarLeadingConstraint?.update(offset: 16)
+        avatarWidthConstraint?.update(offset: 128)
+        avatarHeightConstraint?.update(offset: 128)
+        
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut) {
+            self.returnAvatarButton.alpha = 0
+            self.avatarImageView.layer.cornerRadius = 64
+            self.avatarBackground.alpha = 0
+            self.layoutIfNeeded()
         } completion: { _ in
+            self.avatarBackground.isHidden = true
             ProfileViewController.postTableView.isScrollEnabled = true
             ProfileViewController.postTableView.cellForRow(at: IndexPath(row: 0, section: 0))?.isUserInteractionEnabled = true
             self.avatarImageView.isUserInteractionEnabled = true

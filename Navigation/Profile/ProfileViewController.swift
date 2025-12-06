@@ -7,6 +7,10 @@ import UIKit
 
 final class ProfileViewController: UIViewController {
     
+    // MARK: - Properties
+    
+    var user: User?
+    
     static let headerIdent = "header"
     static let photoIdent = "photo"
     static let postIdent = "post"
@@ -94,6 +98,12 @@ extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard section == 0 else { return nil }
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: Self.headerIdent) as! ProfileHeaderView
+        
+        // Передаём данные пользователя в header
+        if let user = user {
+            headerView.configure(with: user)
+        }
+        
         return headerView
     }
 
@@ -116,4 +126,3 @@ extension ProfileViewController: UITableViewDelegate {
         }
     }
 }
-
