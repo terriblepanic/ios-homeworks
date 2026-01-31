@@ -4,10 +4,13 @@
 //
 
 import UIKit
+import iOSIntPackage
 
 class PhotosViewController: UIViewController {
     
     let photoIdent = "photoCell"
+    private let imagePublisher = ImagePublisherFacade()
+    private var photos: [UIImage] = []
 
     // MARK: Visual objects
     
@@ -38,6 +41,8 @@ class PhotosViewController: UIViewController {
         self.photosCollectionView.dataSource = self
         self.photosCollectionView.delegate = self
         setupConstraints()
+        imagePublisher.subscribe(self)
+        imagePublisher.addImagesWithTimer(time: 0.5, repeat: 15)
     }
     
     private func setupConstraints() {
@@ -57,10 +62,23 @@ class PhotosViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.isHidden = true
+        imagePublisher.removeSubscription(for: self)
     }
 }
 
 // MARK: - Extensions
+
+extension PhotosViewController: ImageLibrarySubscriber {
+    func receive(images: [UIImage]) {
+        // Обновляем массив фото
+        self.photos = images
+        
+        // Обновляем UI на главном потоке
+        DispatchQueue.main.async {
+            self.photosCollectionView.reloadData()
+        }
+    }
+}
 
 extension PhotosViewController: UICollectionViewDelegateFlowLayout {
 
@@ -75,12 +93,17 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
 extension PhotosViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Photos.shared.examples.count
+        return photos.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: photoIdent, for: indexPath) as? PhotosCollectionViewCell else { return UICollectionViewCell()}
         cell.configCellCollection(photo: Photos.shared.examples[indexPath.item])
+        
+        if indexPath.item < photos.count {
+            cell.configCellCollection(photo: photos[indexPath.item])
+        }
+        
         return cell
     }
 }

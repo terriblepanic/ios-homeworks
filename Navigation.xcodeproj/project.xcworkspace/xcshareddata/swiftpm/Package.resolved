@@ -1,13 +1,13 @@
 {
-  "originHash" : "7dbbbb868f0f9170cca1bdd4ade8501860c3da7e0316cd9e7e17f3e61d2263e3",
+  "originHash" : "688d834f35c2fbcbc411b959c08471c9a97fb052546075725bca39b9e2884be2",
   "pins" : [
     {
       "identity" : "iosintpackage",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/TrueMax/iOSIntPackage",
       "state" : {
-        "revision" : "78a55cb525e18e6bb05886bd5572cfa67ee7b47e",
-        "version" : "2.2.0"
+        "branch" : "imagepublisher",
+        "revision" : "e1cc0e1b76d7cb8f770d903d85ae9ed91ae026bd"
       }
     },
     {
