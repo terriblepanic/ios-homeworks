@@ -9,6 +9,8 @@ final class LoginViewController: UIViewController {
     
     // MARK: - Properties
     
+    var loginDelegate: LoginViewControllerDelegate?
+    
     private var userService: UserService {
         #if DEBUG
         return TestUserService()
@@ -16,6 +18,7 @@ final class LoginViewController: UIViewController {
         return CurrentUserService()
         #endif
     }
+    
     
     // MARK: Visual content
     
@@ -178,22 +181,32 @@ final class LoginViewController: UIViewController {
     
     // MARK: - Event handlers
 
-    @objc private func touchLoginButton() {
-        // Получаем введённый логин
+    @objc private func touchLoginButton() {        
         guard let login = loginField.text, !login.isEmpty else {
             showAlert(message: "Пожалуйста, введите логин")
             return
         }
         
-        // Пытаемся получить пользователя через сервис
-        if let user = userService.getUser(withLogin: login) {
-            // Успешная авторизация - переходим в профиль
-            let profileVC = ProfileViewController()
-            profileVC.user = user
-            navigationController?.setViewControllers([profileVC], animated: true)
+        guard let password = passwordField.text, !password.isEmpty else {
+            showAlert(message: "Пожалуйста, введите пароль")
+            return
+        }
+        
+        guard let delegate = loginDelegate else {
+            showAlert(message: "Ошибка конфигурации приложения")
+            return
+        }
+        
+        if delegate.check(login: login, password: password) {
+            if let user = userService.getUser(withLogin: login) {
+                let profileVC = ProfileViewController()
+                profileVC.user = user
+                navigationController?.setViewControllers([profileVC], animated: true)
+            } else {
+                showAlert(message: "Ошибка загрузки профиля")
+            }
         } else {
-            // Неверный логин
-            showAlert(message: "Неверный логин. Попробуйте снова.")
+            showAlert(message: "Неверный логин или пароль")
         }
     }
     
@@ -202,6 +215,7 @@ final class LoginViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
     }
+
 
     @objc private func keyboardShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
