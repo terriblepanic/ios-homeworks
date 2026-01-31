@@ -16,19 +16,19 @@ final class InfoViewController: UIViewController {
     }
     
     private func createAlertButton() {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Alert", for: .normal)
-        button.backgroundColor = .systemPink
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = LayoutConstants.cornerRadius
-        button.addTarget(self, action: #selector(tapAlertButton), for: .touchUpInside)
+        let button = CustomButton(
+            title: "Alert",
+            titleColor: .white,
+            backgroundColor: .systemPink
+        ) { [weak self] in
+            self?.tapAlertButton()
+        }
                 
         view.addSubview(button)
         
         NSLayoutConstraint.activate([
-            button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            button.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            button.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             button.heightAnchor.constraint(equalToConstant: 50),
             button.widthAnchor.constraint(equalToConstant: 100)
         ])

@@ -29,6 +29,7 @@
 		B52769882EE45C1F00118872 /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B527697F2EE45C1F00118872 /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B54DE0922F2E8E0F00744AEA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B54DE0912F2E8E0F00744AEA /* SnapKit */; };
 		B54DE0952F2EA7E000744AEA /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = B54DE0942F2EA7E000744AEA /* iOSIntPackage */; };
+		B54DE0982F2EBCAF00744AEA /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54DE0972F2EBCAD00744AEA /* CustomButton.swift */; };
 		B5C8352E2EE48C4A00ECAF30 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = B5C8352D2EE48C4A00ECAF30 /* iOSIntPackage */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +79,7 @@
 		36C5F0622850B7B6005EFC6C /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		36C5F0642850C9D1005EFC6C /* PostExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostExamples.swift; sourceTree = "<group>"; };
 		B527697F2EE45C1F00118872 /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B54DE0972F2EBCAD00744AEA /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -162,6 +164,7 @@
 		36528E3A284F703400965BA4 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				B54DE0972F2EBCAD00744AEA /* CustomButton.swift */,
 				36528E38284F700900965BA4 /* ExtensionUIImage.swift */,
 				36528E40284FE38C00965BA4 /* ExtensionUIView.swift */,
 				36528E3B284F725E00965BA4 /* LayoutConstants.swift */,
@@ -300,6 +303,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B54DE0982F2EBCAF00744AEA /* CustomButton.swift in Sources */,
 				36528E3F284FDF9100965BA4 /* PostTableViewCell.swift in Sources */,
 				3601A2BC28494D5D000D261A /* FeedViewController.swift in Sources */,
 				3601A2BE28494E4F000D261A /* ProfileViewController.swift in Sources */,
