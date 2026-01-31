@@ -3,12 +3,13 @@
 //  Navigation
 //
 import StorageService
-
+import iOSIntPackage
 import UIKit
 
 class PostTableViewCell: UITableViewCell {
     
     private var viewCounter = 0
+    private let imageProcessor = ImageProcessor()
 
     // MARK: Visual objects
     
@@ -26,6 +27,7 @@ class PostTableViewCell: UITableViewCell {
         image.translatesAutoresizingMaskIntoConstraints = false
         image.backgroundColor = .black
         image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
         return image
     }()
 
@@ -97,7 +99,20 @@ class PostTableViewCell: UITableViewCell {
     func configPostArray(post: Post) {
         postAuthor.text = post.author
         postDescription.text = post.description
-        postImage.image = UIImage(named: post.image)
+        
+        if let originalImage = UIImage(named: post.image) {
+            
+            imageProcessor.processImage(sourceImage: originalImage, filter: .noir) { processedImage in
+                DispatchQueue.main.async {
+                    if let filteredImage = processedImage {
+                        self.postImage.image = filteredImage
+                    } else {
+                        self.postImage.image = originalImage
+                    }
+                }
+            }
+        }
+        
         postLikes.text = "Likes: \(post.likes)"
         viewCounter = post.views
         postViews.text = "Views: \(viewCounter)"
@@ -108,4 +123,3 @@ class PostTableViewCell: UITableViewCell {
         postViews.text = "Views: \(viewCounter)"
     }
 }
-

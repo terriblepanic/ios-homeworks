@@ -7,6 +7,16 @@ import UIKit
 
 final class LoginViewController: UIViewController {
     
+    // MARK: - Properties
+    
+    private var userService: UserService {
+        #if DEBUG
+        return TestUserService()
+        #else
+        return CurrentUserService()
+        #endif
+    }
+    
     // MARK: Visual content
     
     var loginScrollView: UIScrollView = {
@@ -169,8 +179,28 @@ final class LoginViewController: UIViewController {
     // MARK: - Event handlers
 
     @objc private func touchLoginButton() {
-        let profileVC = ProfileViewController()
-        navigationController?.setViewControllers([profileVC], animated: true)
+        // Получаем введённый логин
+        guard let login = loginField.text, !login.isEmpty else {
+            showAlert(message: "Пожалуйста, введите логин")
+            return
+        }
+        
+        // Пытаемся получить пользователя через сервис
+        if let user = userService.getUser(withLogin: login) {
+            // Успешная авторизация - переходим в профиль
+            let profileVC = ProfileViewController()
+            profileVC.user = user
+            navigationController?.setViewControllers([profileVC], animated: true)
+        } else {
+            // Неверный логин
+            showAlert(message: "Неверный логин. Попробуйте снова.")
+        }
+    }
+    
+    private func showAlert(message: String) {
+        let alert = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
     }
 
     @objc private func keyboardShow(notification: NSNotification) {
