@@ -9,7 +9,7 @@ final class ProfileViewController: UIViewController {
     
     // MARK: - Properties
     
-    var user: User?
+    private var viewModel: ProfileViewModelInput!
     
     static let headerIdent = "header"
     static let photoIdent = "photo"
@@ -23,6 +23,17 @@ final class ProfileViewController: UIViewController {
         table.register(PostTableViewCell.self, forCellReuseIdentifier: postIdent)
         return table
     }()
+    
+    // MARK: - Init
+    
+    init(viewModel: ProfileViewModelInput) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - Setup section
     
@@ -41,7 +52,6 @@ final class ProfileViewController: UIViewController {
         #if DEBUG
         Self.postTableView.backgroundColor = .systemGray2
         #endif
-
     }
     
     private func setupConstraints() {
@@ -59,14 +69,22 @@ final class ProfileViewController: UIViewController {
     }
 }
 
-// MARK: - Extensions
+// MARK: - DEBUG: ProfileViewModelOutput
+
+extension ProfileViewController: ProfileViewModelOutput {
+    func didUpdateStatus(_ status: String) {
+        print("Status updated to: \(status)")
+    }
+}
+
+// MARK: - UITableViewDataSource
 
 extension ProfileViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0: return 1
-        case 1: return postExamples.count
+        case 1: return viewModel.posts.count  // Используем ViewModel
         default:
             assertionFailure("no registered section")
             return 1
@@ -78,6 +96,8 @@ extension ProfileViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
+
 extension ProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -87,7 +107,7 @@ extension ProfileViewController: UITableViewDelegate {
             return cell
         case 1:
             let cell = Self.postTableView.dequeueReusableCell(withIdentifier: Self.postIdent, for: indexPath) as! PostTableViewCell
-            cell.configPostArray(post: postExamples[indexPath.row])
+            cell.configPostArray(post: viewModel.posts[indexPath.row])  // Используем ViewModel
             return cell
         default:
             assertionFailure("no registered section")
@@ -99,11 +119,13 @@ extension ProfileViewController: UITableViewDelegate {
         guard section == 0 else { return nil }
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: Self.headerIdent) as! ProfileHeaderView
         
-        // Передаём данные пользователя в header
-        if let user = user {
+        if let user = viewModel.user {
             headerView.configure(with: user)
         }
         
+        headerView.onStatusUpdate = { [weak self] newStatus in
+            self?.viewModel.updateStatus(newStatus)
+        }
         return headerView
     }
 

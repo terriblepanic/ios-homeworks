@@ -27,6 +27,7 @@
 		36C5F0652850C9D1005EFC6C /* PostExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C5F0642850C9D1005EFC6C /* PostExamples.swift */; };
 		B52769872EE45C1F00118872 /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B527697F2EE45C1F00118872 /* StorageService.framework */; };
 		B52769882EE45C1F00118872 /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B527697F2EE45C1F00118872 /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B53197232F30E85600189333 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53197222F30E85500189333 /* ProfileViewModel.swift */; };
 		B54DE0922F2E8E0F00744AEA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B54DE0912F2E8E0F00744AEA /* SnapKit */; };
 		B54DE0952F2EA7E000744AEA /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = B54DE0942F2EA7E000744AEA /* iOSIntPackage */; };
 		B54DE0982F2EBCAF00744AEA /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54DE0972F2EBCAD00744AEA /* CustomButton.swift */; };
@@ -79,6 +80,7 @@
 		36C5F0622850B7B6005EFC6C /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		36C5F0642850C9D1005EFC6C /* PostExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostExamples.swift; sourceTree = "<group>"; };
 		B527697F2EE45C1F00118872 /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B53197222F30E85500189333 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		B54DE0972F2EBCAD00744AEA /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,6 +151,7 @@
 		3601A2C5284A771D000D261A /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				B53197222F30E85500189333 /* ProfileViewModel.swift */,
 				36528E36284F5E3800965BA4 /* LoginViewController.swift */,
 				3601A2C6284A776A000D261A /* ProfileHeaderView.swift */,
 				3601A2BD28494E4F000D261A /* ProfileViewController.swift */,
@@ -309,6 +312,7 @@
 				3601A2BE28494E4F000D261A /* ProfileViewController.swift in Sources */,
 				3601A2A828490DDF000D261A /* AppDelegate.swift in Sources */,
 				3601A2C028495339000D261A /* PostViewController.swift in Sources */,
+				B53197232F30E85600189333 /* ProfileViewModel.swift in Sources */,
 				36528E37284F5E3800965BA4 /* LoginViewController.swift in Sources */,
 				36528E41284FE38C00965BA4 /* ExtensionUIView.swift in Sources */,
 				36C5F05E2850B4A6005EFC6C /* PhotoExamples.swift in Sources */,

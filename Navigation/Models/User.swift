@@ -11,8 +11,7 @@ class User {
     let login: String
     let fullName: String
     let avatar: UIImage
-    let status: String
-    
+    var status: String
     init(login: String, fullName: String, avatar: UIImage, status: String) {
         self.login = login
         self.fullName = fullName

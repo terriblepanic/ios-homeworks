@@ -9,6 +9,7 @@ import SnapKit
 final class ProfileHeaderView: UITableViewHeaderFooterView {
     
     // MARK: Visual objects
+    var onStatusUpdate: ((String) -> Void)?
     
     var fullNameLabel = UILabel()
     var avatarImageView = UIImageView()
@@ -173,6 +174,7 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
     
     @objc private func statusButtonPressed() {
         statusLabel.text = statusText
+        onStatusUpdate?(statusText)
     }
     
     @objc private func didTapOnAvatar() {
