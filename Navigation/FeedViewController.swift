@@ -8,6 +8,7 @@ import StorageService
 
 final class FeedViewController: UIViewController {
     
+    weak var coordinator: FeedCoordinator?
     private let feedModel = FeedModel()
     
     private lazy var secretWordTextField: UITextField = {
@@ -151,10 +152,7 @@ final class FeedViewController: UIViewController {
     
     @objc func tapPostButton() {
         let post = postExamples[0]
-        
-        let postVC = PostViewController()
-        postVC.post = post
-        navigationController?.pushViewController(postVC, animated: true)
+        coordinator?.showPost(post)
     }
 }
 
