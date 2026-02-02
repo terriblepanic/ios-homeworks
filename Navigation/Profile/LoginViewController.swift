@@ -83,6 +83,7 @@ final class LoginViewController: UIViewController {
         login.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: login.frame.height))
         login.keyboardType = .emailAddress
         login.textColor = .black
+        login.text = "test"
         login.font = UIFont.systemFont(ofSize: 16)
         login.autocapitalizationType = .none
         login.returnKeyType = .done
@@ -99,6 +100,7 @@ final class LoginViewController: UIViewController {
         password.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: password.frame.height))
         password.isSecureTextEntry = true
         password.textColor = .black
+        password.text = "test"
         password.font = UIFont.systemFont(ofSize: 16)
         password.autocapitalizationType = .none
         password.returnKeyType = .done
@@ -181,7 +183,7 @@ final class LoginViewController: UIViewController {
     
     // MARK: - Event handlers
 
-    @objc private func touchLoginButton() {        
+    @objc private func touchLoginButton() {
         guard let login = loginField.text, !login.isEmpty else {
             showAlert(message: "Пожалуйста, введите логин")
             return
@@ -199,8 +201,9 @@ final class LoginViewController: UIViewController {
         
         if delegate.check(login: login, password: password) {
             if let user = userService.getUser(withLogin: login) {
-                let profileVC = ProfileViewController()
-                profileVC.user = user
+                let viewModel = ProfileViewModel(user: user, userService: userService)
+                let profileVC = ProfileViewController(viewModel: viewModel)
+                viewModel.output = profileVC
                 navigationController?.setViewControllers([profileVC], animated: true)
             } else {
                 showAlert(message: "Ошибка загрузки профиля")
@@ -209,7 +212,7 @@ final class LoginViewController: UIViewController {
             showAlert(message: "Неверный логин или пароль")
         }
     }
-    
+
     private func showAlert(message: String) {
         let alert = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))

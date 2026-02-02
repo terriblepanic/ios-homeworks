@@ -70,13 +70,11 @@ class PhotosViewController: UIViewController {
 
 extension PhotosViewController: ImageLibrarySubscriber {
     func receive(images: [UIImage]) {
-        // Обновляем массив фото
         self.photos = images
+        photosCollectionView.reloadData()
         
-        // Обновляем UI на главном потоке
-        DispatchQueue.main.async {
-            self.photosCollectionView.reloadData()
-        }
+        let item = IndexPath(item: images.count - 1, section: 0)
+        photosCollectionView.scrollToItem(at: item, at: .bottom, animated: true)
     }
 }
 
