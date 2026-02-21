@@ -86,6 +86,7 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		B52769802EE45C1F00118872 /* StorageService */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = StorageService; sourceTree = "<group>"; };
+		B53197242F31367900189333 /* Coordinators */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Coordinators; sourceTree = "<group>"; };
 		B5C8352F2EE4BB8A00ECAF30 /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
 		B5C835302EE4BB9100ECAF30 /* Services */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Services; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -134,6 +135,7 @@
 		3601A2A628490DDF000D261A /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				B53197242F31367900189333 /* Coordinators */,
 				B5C835302EE4BB9100ECAF30 /* Services */,
 				B5C8352F2EE4BB8A00ECAF30 /* Models */,
 				3601A2A728490DDF000D261A /* AppDelegate.swift */,
@@ -212,6 +214,7 @@
 				B52769862EE45C1F00118872 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
+				B53197242F31367900189333 /* Coordinators */,
 				B5C8352F2EE4BB8A00ECAF30 /* Models */,
 				B5C835302EE4BB9100ECAF30 /* Services */,
 			);

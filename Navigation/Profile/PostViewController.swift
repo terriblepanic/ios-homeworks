@@ -8,6 +8,7 @@ import StorageService
 
 final class PostViewController: UIViewController {
     
+    weak var coordinator: FeedCoordinator?
     var post: Post?
 
     override func viewDidLoad() {
@@ -22,7 +23,6 @@ final class PostViewController: UIViewController {
     }
     
     @objc func tapInfoButton() {
-        let infoVC = InfoViewController()
-        present(infoVC, animated: true, completion: nil)
+        coordinator?.showInfo()
     }
 }

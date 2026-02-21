@@ -9,6 +9,7 @@ final class LoginViewController: UIViewController {
     
     // MARK: - Properties
     
+    weak var coordinator: ProfileCoordinator?
     var loginDelegate: LoginViewControllerDelegate?
     
     private var userService: UserService {
@@ -201,10 +202,7 @@ final class LoginViewController: UIViewController {
         
         if delegate.check(login: login, password: password) {
             if let user = userService.getUser(withLogin: login) {
-                let viewModel = ProfileViewModel(user: user, userService: userService)
-                let profileVC = ProfileViewController(viewModel: viewModel)
-                viewModel.output = profileVC
-                navigationController?.setViewControllers([profileVC], animated: true)
+                coordinator?.showProfile(with: user, userService: userService)
             } else {
                 showAlert(message: "Ошибка загрузки профиля")
             }
