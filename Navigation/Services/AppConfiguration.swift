@@ -7,10 +7,14 @@
 
 import Foundation
 
-enum AppConfiguration {
+enum AppConfiguration: CaseIterable {
     case people(String)
     case starships(String)
     case planets(String)
+    
+    static var allCases: [AppConfiguration] {
+        return [.people("8"), .starships("3"), .planets("5")]
+    }
     
     var urlString: String {
         switch self {
