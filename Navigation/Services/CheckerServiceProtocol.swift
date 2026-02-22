@@ -1,13 +1,13 @@
 //
-//  LoginViewControllerDelegate.swift
+//  CheckerServiceProtocol.swift
 //  Navigation
 //
-//  Created by Кирилл Паничкин on 1/31/26.
+//  Created by Кирилл Паничкин on 2/22/26.
 //
 
 import Foundation
 
-protocol LoginViewControllerDelegate: AnyObject {
+protocol CheckerServiceProtocol {
     func checkCredentials(email: String, password: String, completion: @escaping (Result<Void, Error>) -> Void)
     func signUp(email: String, password: String, completion: @escaping (Result<Void, Error>) -> Void)
 }

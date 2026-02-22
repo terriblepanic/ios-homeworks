@@ -17,6 +17,7 @@ final class ProfileCoordinator: Coordinator {
     weak var delegate: ProfileCoordinatorDelegate?
     
     private let loginFactory: LoginFactory
+    private var loginInspector: LoginViewControllerDelegate?
     
     init(navigationController: UINavigationController, loginFactory: LoginFactory = MyLoginFactory()) {
         self.navigationController = navigationController
@@ -28,10 +29,9 @@ final class ProfileCoordinator: Coordinator {
     }
     
     private func showLogin() {
-        let loginVC = LoginViewController()
-        loginVC.loginDelegate = loginFactory.makeLoginInspector()
+        loginInspector = loginFactory.makeLoginInspector()
+        let loginVC = LoginViewController(loginDelegate: loginInspector)
         loginVC.coordinator = self
-        
         navigationController.setViewControllers([loginVC], animated: false)
     }
     

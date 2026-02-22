@@ -10,7 +10,16 @@ final class LoginViewController: UIViewController {
     // MARK: - Properties
     
     weak var coordinator: ProfileCoordinator?
-    var loginDelegate: LoginViewControllerDelegate?
+    private weak var loginDelegate: LoginViewControllerDelegate?
+    
+    init(loginDelegate: LoginViewControllerDelegate?) {
+        self.loginDelegate = loginDelegate
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     private var userService: UserService {
         #if DEBUG
@@ -84,7 +93,7 @@ final class LoginViewController: UIViewController {
         login.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: login.frame.height))
         login.keyboardType = .emailAddress
         login.textColor = .black
-        login.text = "test"
+        login.text = "test@example.com"
         login.font = UIFont.systemFont(ofSize: 16)
         login.autocapitalizationType = .none
         login.returnKeyType = .done
@@ -101,7 +110,7 @@ final class LoginViewController: UIViewController {
         password.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: password.frame.height))
         password.isSecureTextEntry = true
         password.textColor = .black
-        password.text = "test"
+        password.text = "123456"
         password.font = UIFont.systemFont(ofSize: 16)
         password.autocapitalizationType = .none
         password.returnKeyType = .done
@@ -185,29 +194,48 @@ final class LoginViewController: UIViewController {
     // MARK: - Event handlers
 
     @objc private func touchLoginButton() {
-        guard let login = loginField.text, !login.isEmpty else {
-            showAlert(message: "Пожалуйста, введите логин")
+        guard let email = loginField.text, !email.isEmpty,
+              let password = passwordField.text, !password.isEmpty else {
+            showAlert(message: "Пожалуйста, введите email и пароль")
             return
         }
-        
-        guard let password = passwordField.text, !password.isEmpty else {
-            showAlert(message: "Пожалуйста, введите пароль")
-            return
-        }
-        
-        guard let delegate = loginDelegate else {
-            showAlert(message: "Ошибка конфигурации приложения")
-            return
-        }
-        
-        if delegate.check(login: login, password: password) {
-            if let user = userService.getUser(withLogin: login) {
-                coordinator?.showProfile(with: user, userService: userService)
-            } else {
-                showAlert(message: "Ошибка загрузки профиля")
+
+        loginDelegate?.checkCredentials(email: email, password: password) { [weak self] result in
+            switch result {
+            case .success:
+                DispatchQueue.main.async {
+                    self?.coordinator?.showProfile(with: User(
+                        login: email,
+                        fullName: email,
+                        avatar: UIImage(systemName: "person.circle.fill") ?? UIImage(),
+                        status: ""
+                    ), userService: CurrentUserService())
+                }
+
+            case .failure(let error):
+                let nsError = error as NSError
+                if nsError.code == 17011 {
+                    self?.loginDelegate?.signUp(email: email, password: password) { [weak self] result in
+                        DispatchQueue.main.async {
+                            switch result {
+                            case .success:
+                                self?.coordinator?.showProfile(with: User(
+                                    login: email,
+                                    fullName: email,
+                                    avatar: UIImage(systemName: "person.circle.fill") ?? UIImage(),
+                                    status: ""
+                                ), userService: CurrentUserService())
+                            case .failure(let error):
+                                self?.showAlert(message: error.localizedDescription)
+                            }
+                        }
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self?.showAlert(message: error.localizedDescription)
+                    }
+                }
             }
-        } else {
-            showAlert(message: "Неверный логин или пароль")
         }
     }
 
