@@ -31,6 +31,9 @@
 		B54DE0922F2E8E0F00744AEA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B54DE0912F2E8E0F00744AEA /* SnapKit */; };
 		B54DE0952F2EA7E000744AEA /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = B54DE0942F2EA7E000744AEA /* iOSIntPackage */; };
 		B54DE0982F2EBCAF00744AEA /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54DE0972F2EBCAD00744AEA /* CustomButton.swift */; };
+		B570B3C02F4E3171003E4D43 /* Navigation.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B570B3BE2F4E3171003E4D43 /* Navigation.xcdatamodeld */; };
+		B570B3C22F4E31DF003E4D43 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B570B3C12F4E31DD003E4D43 /* CoreDataManager.swift */; };
+		B570B3C42F4E3220003E4D43 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B570B3C32F4E321F003E4D43 /* FavoritesViewController.swift */; };
 		B5C3519A2F4B92E90049B6E4 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B5C351992F4B92E90049B6E4 /* FirebaseAuth */; };
 		B5C351A32F4B9FC30049B6E4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5C351A22F4B9FC20049B6E4 /* GoogleService-Info.plist */; };
 		B5C351A42F4B9FC30049B6E4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5C351A22F4B9FC20049B6E4 /* GoogleService-Info.plist */; };
@@ -85,6 +88,9 @@
 		B527697F2EE45C1F00118872 /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B53197222F30E85500189333 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		B54DE0972F2EBCAD00744AEA /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		B570B3BF2F4E3171003E4D43 /* Navigation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Navigation.xcdatamodel; sourceTree = "<group>"; };
+		B570B3C12F4E31DD003E4D43 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		B570B3C32F4E321F003E4D43 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		B5C351A22F4B9FC20049B6E4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -140,6 +146,8 @@
 		3601A2A628490DDF000D261A /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				B570B3C32F4E321F003E4D43 /* FavoritesViewController.swift */,
+				B570B3C12F4E31DD003E4D43 /* CoreDataManager.swift */,
 				B53197242F31367900189333 /* Coordinators */,
 				B5C835302EE4BB9100ECAF30 /* Services */,
 				B5C8352F2EE4BB8A00ECAF30 /* Models */,
@@ -152,6 +160,7 @@
 				3601A2B228490DDF000D261A /* LaunchScreen.storyboard */,
 				3601A2B528490DDF000D261A /* Info.plist */,
 				B5C351A22F4B9FC20049B6E4 /* GoogleService-Info.plist */,
+				B570B3BE2F4E3171003E4D43 /* Navigation.xcdatamodeld */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -324,13 +333,16 @@
 				3601A2BE28494E4F000D261A /* ProfileViewController.swift in Sources */,
 				3601A2A828490DDF000D261A /* AppDelegate.swift in Sources */,
 				3601A2C028495339000D261A /* PostViewController.swift in Sources */,
+				B570B3C42F4E3220003E4D43 /* FavoritesViewController.swift in Sources */,
 				B53197232F30E85600189333 /* ProfileViewModel.swift in Sources */,
 				36528E37284F5E3800965BA4 /* LoginViewController.swift in Sources */,
 				36528E41284FE38C00965BA4 /* ExtensionUIView.swift in Sources */,
+				B570B3C22F4E31DF003E4D43 /* CoreDataManager.swift in Sources */,
 				36C5F05E2850B4A6005EFC6C /* PhotoExamples.swift in Sources */,
 				3601A2C7284A776A000D261A /* ProfileHeaderView.swift in Sources */,
 				36C5F0652850C9D1005EFC6C /* PostExamples.swift in Sources */,
 				36C5F0612850B723005EFC6C /* PhotosViewController.swift in Sources */,
+				B570B3C02F4E3171003E4D43 /* Navigation.xcdatamodeld in Sources */,
 				36528E39284F700900965BA4 /* ExtensionUIImage.swift in Sources */,
 				36C5F05C2850B1B1005EFC6C /* PhotosTableViewCell.swift in Sources */,
 				3601A2C42849E232000D261A /* InfoViewController.swift in Sources */,
@@ -722,6 +734,19 @@
 			productName = iOSIntPackage;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		B570B3BE2F4E3171003E4D43 /* Navigation.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B570B3BF2F4E3171003E4D43 /* Navigation.xcdatamodel */,
+			);
+			currentVersion = B570B3BF2F4E3171003E4D43 /* Navigation.xcdatamodel */;
+			path = Navigation.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3601A29C28490DDF000D261A /* Project object */;
 }

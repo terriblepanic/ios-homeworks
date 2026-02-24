@@ -10,8 +10,8 @@ class PostTableViewCell: UITableViewCell {
     
     private var viewCounter = 0
     private let imageProcessor = ImageProcessor()
-
-    // MARK: Visual objects
+    
+    var onDoubleTap: (() -> Void)?
     
     var postAuthor: UILabel = {
         let label = UILabel()
@@ -63,12 +63,36 @@ class PostTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubviews(postAuthor, postImage, postDescription, postLikes, postViews)
         setupConstraints()
+        setupDoubleTap()
         self.selectionStyle = .default
     }
 
     required init?(coder: NSCoder) {
         fatalError("lol")
     }
+    
+    // MARK: - Double tap
+    
+    private func setupDoubleTap() {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap))
+        gesture.numberOfTapsRequired = 2
+        contentView.addGestureRecognizer(gesture)
+        contentView.isUserInteractionEnabled = true
+    }
+    
+    @objc private func handleDoubleTap() {
+        onDoubleTap?()
+        
+        UIView.animate(withDuration: 0.15, animations: {
+            self.contentView.alpha = 0.5
+        }) { _ in
+            UIView.animate(withDuration: 0.15) {
+                self.contentView.alpha = 1.0
+            }
+        }
+    }
+    
+    // MARK: - Constraints
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
@@ -94,21 +118,16 @@ class PostTableViewCell: UITableViewCell {
         ])
     }
 
-    // MARK: - Run loop
+    // MARK: - Configure
     
     func configPostArray(post: Post) {
         postAuthor.text = post.author
         postDescription.text = post.description
         
         if let originalImage = UIImage(named: post.image) {
-            
             imageProcessor.processImage(sourceImage: originalImage, filter: .noir) { processedImage in
                 DispatchQueue.main.async {
-                    if let filteredImage = processedImage {
-                        self.postImage.image = filteredImage
-                    } else {
-                        self.postImage.image = originalImage
-                    }
+                    self.postImage.image = processedImage ?? originalImage
                 }
             }
         }

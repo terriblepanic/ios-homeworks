@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="24512" systemVersion="25A353" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="PostEntity" representedClassName="PostEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="author" optional="YES" attributeType="String"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="likes" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="postDescription" optional="YES" attributeType="String"/>
+        <attribute name="views" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+</model>
