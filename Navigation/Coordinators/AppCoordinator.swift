@@ -45,18 +45,29 @@ final class AppCoordinator: Coordinator {
             selectedImage: UIImage(systemName: "heart.fill")
         )
         
+        let mapNavController = UINavigationController()
+        let mapCoordinator = MapCoordinator(navigationController: mapNavController)
+        mapNavController.tabBarItem = UITabBarItem(
+            title: "Map",
+            image: UIImage(systemName: "map"),
+            selectedImage: UIImage(systemName: "map.fill")
+        )
+        
         addChildCoordinator(profileCoordinator)
         addChildCoordinator(feedCoordinator)
         addChildCoordinator(favoritesCoordinator)
+        addChildCoordinator(mapCoordinator)
         
         profileCoordinator.start()
         feedCoordinator.start()
         favoritesCoordinator.start()
+        mapCoordinator.start()
         
         tabBarController.viewControllers = [
             profileCoordinator.navigationController,
             feedCoordinator.navigationController,
-            favNavController
+            favNavController,
+            mapNavController
         ]
         
         self.tabBarController = tabBarController
