@@ -24,29 +24,39 @@ final class AppCoordinator: Coordinator {
         tabBarController.tabBar.backgroundColor = .white
         
         let profileCoordinator = ProfileCoordinator(navigationController: UINavigationController())
-        let feedCoordinator = FeedCoordinator(navigationController: UINavigationController())
-        
-        addChildCoordinator(profileCoordinator)
-        addChildCoordinator(feedCoordinator)
-        
-        profileCoordinator.start()
-        feedCoordinator.start()
-        
         profileCoordinator.navigationController.tabBarItem = UITabBarItem(
             title: "Profile",
             image: UIImage(systemName: "person.crop.circle"),
             selectedImage: UIImage(systemName: "person.crop.circle.fill")
         )
         
+        let feedCoordinator = FeedCoordinator(navigationController: UINavigationController())
         feedCoordinator.navigationController.tabBarItem = UITabBarItem(
             title: "Feed",
             image: UIImage(systemName: "text.bubble"),
             selectedImage: UIImage(systemName: "text.bubble.fill")
         )
         
+        let favNavController = UINavigationController()
+        let favoritesCoordinator = FavoritesCoordinator(navigationController: favNavController)
+        favNavController.tabBarItem = UITabBarItem(
+            title: "Favourites",
+            image: UIImage(systemName: "heart"),
+            selectedImage: UIImage(systemName: "heart.fill")
+        )
+        
+        addChildCoordinator(profileCoordinator)
+        addChildCoordinator(feedCoordinator)
+        addChildCoordinator(favoritesCoordinator)
+        
+        profileCoordinator.start()
+        feedCoordinator.start()
+        favoritesCoordinator.start()
+        
         tabBarController.viewControllers = [
             profileCoordinator.navigationController,
-            feedCoordinator.navigationController
+            feedCoordinator.navigationController,
+            favNavController
         ]
         
         self.tabBarController = tabBarController

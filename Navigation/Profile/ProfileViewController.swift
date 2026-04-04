@@ -108,8 +108,18 @@ extension ProfileViewController: UITableViewDelegate {
             let cell = Self.postTableView.dequeueReusableCell(withIdentifier: Self.photoIdent, for: indexPath) as! PhotosTableViewCell
             return cell
         case 1:
-            let cell = Self.postTableView.dequeueReusableCell(withIdentifier: Self.postIdent, for: indexPath) as! PostTableViewCell
-            cell.configPostArray(post: viewModel.posts[indexPath.row])  // Используем ViewModel
+            let cell = Self.postTableView.dequeueReusableCell(
+                withIdentifier: Self.postIdent, for: indexPath
+            ) as! PostTableViewCell
+            
+            let post = viewModel.posts[indexPath.row]
+            cell.configPostArray(post: post)
+            
+            cell.onDoubleTap = { [weak self] in
+                CoreDataManager.shared.savePost(post)
+                self?.showSavedToast()
+            }
+            
             return cell
         default:
             assertionFailure("no registered section")
@@ -147,6 +157,31 @@ extension ProfileViewController: UITableViewDelegate {
             }
         default:
             assertionFailure("no registered section")
+        }
+    }
+    
+    private func showSavedToast() {
+        let toast = UILabel()
+        toast.text = "  ❤️ Saved to Favourites  "
+        toast.backgroundColor = UIColor.black.withAlphaComponent(0.75)
+        toast.textColor = .white
+        toast.font = .systemFont(ofSize: 14, weight: .medium)
+        toast.layer.cornerRadius = 12
+        toast.clipsToBounds = true
+        toast.translatesAutoresizingMaskIntoConstraints = false
+        toast.textAlignment = .center
+        
+        view.addSubview(toast)
+        NSLayoutConstraint.activate([
+            toast.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            toast.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -24),
+            toast.heightAnchor.constraint(equalToConstant: 40)
+        ])
+        
+        UIView.animate(withDuration: 0.3, delay: 1.2, options: [], animations: {
+            toast.alpha = 0
+        }) { _ in
+            toast.removeFromSuperview()
         }
     }
 }
