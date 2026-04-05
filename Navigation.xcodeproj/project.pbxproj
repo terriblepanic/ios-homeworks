@@ -26,6 +26,8 @@
 		36C5F0632850B7B6005EFC6C /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C5F0622850B7B6005EFC6C /* PhotosCollectionViewCell.swift */; };
 		36C5F0652850C9D1005EFC6C /* PostExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C5F0642850C9D1005EFC6C /* PostExamples.swift */; };
 		B52703CE2F81A7DA0017CB93 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52703CD2F81A7D60017CB93 /* MapViewController.swift */; };
+		B52703D32F82FE270017CB93 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52703D22F82FE250017CB93 /* FeedViewModel.swift */; };
+		B52703D52F82FE7A0017CB93 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52703D42F82FE790017CB93 /* LoginViewModel.swift */; };
 		B52769872EE45C1F00118872 /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B527697F2EE45C1F00118872 /* StorageService.framework */; };
 		B52769882EE45C1F00118872 /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B527697F2EE45C1F00118872 /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B53197232F30E85600189333 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53197222F30E85500189333 /* ProfileViewModel.swift */; };
@@ -42,6 +44,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		B52703DE2F82FF050017CB93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3601A29C28490DDF000D261A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3601A2A328490DDF000D261A;
+			remoteInfo = Navigation;
+		};
 		B52769852EE45C1F00118872 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3601A29C28490DDF000D261A /* Project object */;
@@ -87,6 +96,9 @@
 		36C5F0622850B7B6005EFC6C /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		36C5F0642850C9D1005EFC6C /* PostExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostExamples.swift; sourceTree = "<group>"; };
 		B52703CD2F81A7D60017CB93 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		B52703D22F82FE250017CB93 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		B52703D42F82FE790017CB93 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		B52703DA2F82FF050017CB93 /* NavigationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NavigationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B527697F2EE45C1F00118872 /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B53197222F30E85500189333 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		B54DE0972F2EBCAD00744AEA /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -97,6 +109,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		B52703DB2F82FF050017CB93 /* NavigationTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = NavigationTests; sourceTree = "<group>"; };
 		B52769802EE45C1F00118872 /* StorageService */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = StorageService; sourceTree = "<group>"; };
 		B53197242F31367900189333 /* Coordinators */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Coordinators; sourceTree = "<group>"; };
 		B5C8352F2EE4BB8A00ECAF30 /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
@@ -116,6 +129,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B52703D72F82FF050017CB93 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B527697C2EE45C1F00118872 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -131,6 +151,7 @@
 			children = (
 				3601A2A628490DDF000D261A /* Navigation */,
 				B52769802EE45C1F00118872 /* StorageService */,
+				B52703DB2F82FF050017CB93 /* NavigationTests */,
 				3601A2A528490DDF000D261A /* Products */,
 				5D795D99C2D50D703CB683AF /* Pods */,
 			);
@@ -141,6 +162,7 @@
 			children = (
 				3601A2A428490DDF000D261A /* Navigation.app */,
 				B527697F2EE45C1F00118872 /* StorageService.framework */,
+				B52703DA2F82FF050017CB93 /* NavigationTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -148,6 +170,8 @@
 		3601A2A628490DDF000D261A /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				B52703D42F82FE790017CB93 /* LoginViewModel.swift */,
+				B52703D22F82FE250017CB93 /* FeedViewModel.swift */,
 				B52703CD2F81A7D60017CB93 /* MapViewController.swift */,
 				B570B3C32F4E321F003E4D43 /* FavoritesViewController.swift */,
 				B570B3C12F4E31DD003E4D43 /* CoreDataManager.swift */,
@@ -241,6 +265,29 @@
 			productReference = 3601A2A428490DDF000D261A /* Navigation.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B52703D92F82FF050017CB93 /* NavigationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B52703E02F82FF050017CB93 /* Build configuration list for PBXNativeTarget "NavigationTests" */;
+			buildPhases = (
+				B52703D62F82FF050017CB93 /* Sources */,
+				B52703D72F82FF050017CB93 /* Frameworks */,
+				B52703D82F82FF050017CB93 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B52703DF2F82FF050017CB93 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				B52703DB2F82FF050017CB93 /* NavigationTests */,
+			);
+			name = NavigationTests;
+			packageProductDependencies = (
+			);
+			productName = NavigationTests;
+			productReference = B52703DA2F82FF050017CB93 /* NavigationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		B527697E2EE45C1F00118872 /* StorageService */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B527698C2EE45C1F00118872 /* Build configuration list for PBXNativeTarget "StorageService" */;
@@ -269,11 +316,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2600;
+				LastSwiftUpdateCheck = 2620;
 				LastUpgradeCheck = 1330;
 				TargetAttributes = {
 					3601A2A328490DDF000D261A = {
 						CreatedOnToolsVersion = 13.3.1;
+					};
+					B52703D92F82FF050017CB93 = {
+						CreatedOnToolsVersion = 26.2;
+						TestTargetID = 3601A2A328490DDF000D261A;
 					};
 					B527697E2EE45C1F00118872 = {
 						CreatedOnToolsVersion = 26.0;
@@ -300,6 +351,7 @@
 			targets = (
 				3601A2A328490DDF000D261A /* Navigation */,
 				B527697E2EE45C1F00118872 /* StorageService */,
+				B52703D92F82FF050017CB93 /* NavigationTests */,
 			);
 		};
 /* End PBXProject section */
@@ -312,6 +364,13 @@
 				3601A2B428490DDF000D261A /* LaunchScreen.storyboard in Resources */,
 				3601A2B128490DDF000D261A /* Assets.xcassets in Resources */,
 				B5C351A32F4B9FC30049B6E4 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B52703D82F82FF050017CB93 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,9 +394,11 @@
 				36528E3F284FDF9100965BA4 /* PostTableViewCell.swift in Sources */,
 				3601A2BC28494D5D000D261A /* FeedViewController.swift in Sources */,
 				3601A2BE28494E4F000D261A /* ProfileViewController.swift in Sources */,
+				B52703D32F82FE270017CB93 /* FeedViewModel.swift in Sources */,
 				3601A2A828490DDF000D261A /* AppDelegate.swift in Sources */,
 				3601A2C028495339000D261A /* PostViewController.swift in Sources */,
 				B570B3C42F4E3220003E4D43 /* FavoritesViewController.swift in Sources */,
+				B52703D52F82FE7A0017CB93 /* LoginViewModel.swift in Sources */,
 				B53197232F30E85600189333 /* ProfileViewModel.swift in Sources */,
 				36528E37284F5E3800965BA4 /* LoginViewController.swift in Sources */,
 				36528E41284FE38C00965BA4 /* ExtensionUIView.swift in Sources */,
@@ -355,6 +416,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B52703D62F82FF050017CB93 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B527697B2EE45C1F00118872 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -365,6 +433,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		B52703DF2F82FF050017CB93 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3601A2A328490DDF000D261A /* Navigation */;
+			targetProxy = B52703DE2F82FF050017CB93 /* PBXContainerItemProxy */;
+		};
 		B52769862EE45C1F00118872 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B527697E2EE45C1F00118872 /* StorageService */;
@@ -513,6 +586,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -544,6 +618,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -557,6 +632,61 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		B52703E12F82FF050017CB93 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KSSD7A7UK6;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kirill.NavigationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Navigation.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Navigation";
+			};
+			name = Debug;
+		};
+		B52703E22F82FF050017CB93 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KSSD7A7UK6;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kirill.NavigationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Navigation.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Navigation";
 			};
 			name = Release;
 		};
@@ -579,7 +709,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -624,7 +754,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -666,6 +796,15 @@
 			buildConfigurations = (
 				3601A2B928490DDF000D261A /* Debug */,
 				3601A2BA28490DDF000D261A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B52703E02F82FF050017CB93 /* Build configuration list for PBXNativeTarget "NavigationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B52703E12F82FF050017CB93 /* Debug */,
+				B52703E22F82FF050017CB93 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
