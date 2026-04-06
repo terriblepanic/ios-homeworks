@@ -12,11 +12,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var appCoordinator: AppCoordinator?
+    private let notificationsService = LocalNotificationsService()
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         FirebaseApp.configure()
+        notificationsService.registeForLatestUpdatesIfPossible()
 
         Task {
             let url = AppConfiguration.allCases.randomElement()?.rawValue ?? ""
