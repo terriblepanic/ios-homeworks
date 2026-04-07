@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class FeedModel {
+final class FeedModel: FeedModelProtocol {
     
     private let secretWord: String = "Swift"
     
